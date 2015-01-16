@@ -8,52 +8,38 @@ ENV RUBYVERSION 2.1.5
 RUN \
     apt-get update \
     && apt-get dist-upgrade -y
+
 RUN \
-    apt-get install -y --no-install-recommends \
-        curl \
+    apt-get install -y \
         build-essential \
-        openssh-server \
+        byobu \
+        ca-certificates \
+        curl \
         git \
-        byobu
+        mercurial \
+        openssh-server \
+        openssl \
+        vim
 
 RUN \
     curl -sSL https://golang.org/dl/go$GOVERSION.src.tar.gz  | tar -v -C /usr/src -xz \
     && cd /usr/src/go/src && ./make.bash --no-clean
+    && gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
+    && \curl -sSL https://get.rvm.io | bash -s stable \
+    && /usr/local/rvm/bin/rvm install ruby-$RUBYVERSION \
+    && /usr/local/rvm/bin/rvm use ruby-$RUBYVERSION
 
 RUN \
-    gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
-    && \curl -sSL https://get.rvm.io | bash -s stable \
-    && source /etc/profile.d/rvm.sh \
-    && rvm install ruby-$RUBYVERSION \
-    && rvm use ruby-$RUBYVERSION
-
-RUN mkdir /var/run/sshd
-RUN echo 'root:root' |chpasswd
-RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+    mkdir /var/run/sshd \
+    && echo 'root:root' | chpasswd \
+    && sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 RUN mkdir -p /workspace
 
-
+ADD get-deliverous /usr/local/bin/get-deliverous
+RUN chmod 755 /usr/local/bin/get-deliverous
 
 EXPOSE 22
 
-CMD    ["/usr/sbin/sshd", "-D"]
-
-
-
- apt-get upgrade
-  16  mkdir wc
-  17  cd wc/
-  27  . /usr/bin/byobu-reconnect-sockets
-  28  git clone git@git.deliverous.com:deliverous/workspace deliverous
-  30  cd deliverous/
-  43  bundle
-  46  bundle exec rake git:update
-  48  source ./bin/env.sh
-  49  cd gocode/src/
-  51  cd git.deliverous.com/
-  53  cd deliverous/api.git/
-  56  export PATH=/usr/src/go/bin:$PATH
-  60  go get -t ./...
-  62  go test ./...
+CMD ["/usr/sbin/sshd", "-D"]

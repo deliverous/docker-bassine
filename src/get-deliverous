@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd /workspace
+
+git clone git@git.deliverous.com:deliverous/workspace deliverous
+
+cd /workspace/deliverous
+
+bundle
+bundle exec rake git:update
