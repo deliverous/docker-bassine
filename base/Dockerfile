@@ -29,8 +29,11 @@ RUN \
     && mkdir -p /home/johndeau \
     && chown -R johndeau:johndeau /home/johndeau
 
+ADD set-git-user /usr/local/bin/set-git-user
+RUN chmod 755 /usr/local/bin/set-git-user
+
 USER johndeau
-RUN git config --global push.default simple
+ADD gitconfig /home/johndeau/.gitconfig
 ADD vimrc /home/johndeau/.vimrc
 RUN \
     mkdir -p ~/workspace ~/.vim/bundle \
