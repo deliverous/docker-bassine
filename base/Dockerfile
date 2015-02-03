@@ -31,7 +31,7 @@ ADD gitconfig /home/johndeau/.gitconfig
 ADD vimrc /home/johndeau/.vimrc
 ADD set-git-user /usr/local/bin/set-git-user
 RUN \
-    chmod 755 /usr/local/bin/set-git-user
+    chmod 755 /usr/local/bin/set-git-user \
     && chown -R johndeau:johndeau /home/johndeau
 
 RUN \
