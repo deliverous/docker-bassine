@@ -26,6 +26,7 @@ RUN \
     && (echo "pierre:deau" | chpasswd) \
     && adduser pierre sudo
 
+ADD sudoers /etc/sudoers
 ADD gitconfig /home/pierre/.gitconfig
 ADD vimrc /home/pierre/.vimrc
 ADD set-git-user /usr/local/bin/set-git-user
