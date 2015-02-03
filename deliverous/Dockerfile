@@ -12,6 +12,6 @@ USER pierre
 RUN \
     mkdir -p ~/workspace \
     && gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
-    && \curl -sSL https://get.rvm.io | bash -s stable\
+    && \curl -sSL https://get.rvm.io | bash -s stable \
     && /home/pierre/.rvm/bin/rvm install ruby-$RUBYVERSION \
     && /home/pierre/.rvm/bin/rvm use ruby-$RUBYVERSION
