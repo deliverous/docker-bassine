@@ -21,13 +21,17 @@ RUN \
         openssl \
         vim
 
+
+RUN useradd user && (echo "user:user" | chpasswd) && adduser user sudo
+RUN mkdir -p /home/user && chown -R user:user /home/user
+
 RUN \
     curl -sSL https://golang.org/dl/go$GOVERSION.src.tar.gz  | tar -v -C /usr/src -xz \
     && cd /usr/src/go/src && ./make.bash --no-clean
     && gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
-    && \curl -sSL https://get.rvm.io | bash -s stable \
-    && /usr/local/rvm/bin/rvm install ruby-$RUBYVERSION \
-    && /usr/local/rvm/bin/rvm use ruby-$RUBYVERSION
+    && su - user -c "\curl -sSL https://get.rvm.io | bash -s stable "\
+    && su - user -c "/usr/local/rvm/bin/rvm install ruby-$RUBYVERSION" \
+    && su - user -c "/usr/local/rvm/bin/rvm use ruby-$RUBYVERSION"
 
 RUN \
     mkdir /var/run/sshd \
@@ -35,7 +39,13 @@ RUN \
     && sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
-RUN mkdir -p /workspace
+ADD vimrc ~/.vimrc
+RUN \
+    su - user -c "mkdir -p ~/.vim/bundle" \
+    && su - user -c "&& git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim" \
+    && su - user -c "vim +PluginInstall +qall"
+
+RUN su - user -c "mkdir -p ~/workspace"
 
 ADD get-deliverous /usr/local/bin/get-deliverous
 RUN chmod 755 /usr/local/bin/get-deliverous
