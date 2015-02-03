@@ -1,5 +1,5 @@
 [core]
-  excludesfile = /home/johndeau/.gitignore_global
+  excludesfile = /home/pierre/.gitignore_global
   autocrlf = false
   safecrlf = true
 

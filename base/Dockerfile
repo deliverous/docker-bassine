@@ -22,17 +22,16 @@ RUN \
 	vim-syntax-go
 
 RUN \
-    useradd johndeau \
-    && (echo "johndeau:johndeau" | chpasswd) \
-    && adduser johndeau sudo \
-    && mkdir -p /home/johndeau
+    adduser --disabled-login --gecos "Pierre D'eau,,," pierre \
+    && (echo "pierre:deau" | chpasswd) \
+    && adduser pierre sudo
 
-ADD gitconfig /home/johndeau/.gitconfig
-ADD vimrc /home/johndeau/.vimrc
+ADD gitconfig /home/pierre/.gitconfig
+ADD vimrc /home/pierre/.vimrc
 ADD set-git-user /usr/local/bin/set-git-user
 RUN \
     chmod 755 /usr/local/bin/set-git-user \
-    && chown -R johndeau:johndeau /home/johndeau
+    && chown -R pierre:pierre /home/pierre
 
 RUN \
     mkdir /var/run/sshd \
