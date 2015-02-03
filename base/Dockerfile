@@ -34,10 +34,6 @@ RUN chmod 755 /usr/local/bin/set-git-user
 USER johndeau
 ADD gitconfig /home/johndeau/.gitconfig
 ADD vimrc /home/johndeau/.vimrc
-RUN \
-    mkdir -p ~/workspace ~/.vim/bundle \
-    && git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
-    && vim +PluginInstall +qall
 
 USER root
 
