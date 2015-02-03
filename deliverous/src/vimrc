@@ -1,0 +1,19 @@
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'fatih/vim-go'
+Plugin 'kien/ctrlp.vim'
+call vundle#end()
+
+set expandtab
+set smartindent
+set smarttab
+set hidden
+set shiftwidth=2
+set hlsearch
+set incsearch
+set laststatus=2
+set ruler
+set backupdir=./.backup,/tmp
+set directory=./.backup,/tmp
+

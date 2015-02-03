@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+function set_name {
+   git config --global user.name "$1"
+   echo "Name set to '$1'"
+}
+
+function set_mail {
+   git config --global user.email "$1"
+   echo "Email set to '$1'"
+}
+
+while [[ $# -gt 0 ]] && [[ ."$1" = .--* ]] ;
+do
+    opt="$1";
+    shift;
+    case "$opt" in
+        "--name" )
+           set_name "$1"
+           shift
+           ;;
+        "--name="* )
+           set_name "${opt#*=}"
+           ;;
+        "--email" )
+           set_mail "$1"
+           shift
+           ;;
+        "--email="* )
+           set_mail "${opt#*=}"
+           ;;
+        *) echo >&2 "Invalid option: $@"; exit 1;;
+   esac
+done

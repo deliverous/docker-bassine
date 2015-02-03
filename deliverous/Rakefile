@@ -1,0 +1,4 @@
+require 'rake/docker_lib'
+
+Rake::DockerLib.new("deliverous/docker-bassine-deliverous", version: '0.1.0-0')
+
