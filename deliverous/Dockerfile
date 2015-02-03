@@ -15,3 +15,5 @@ RUN \
     && \curl -sSL https://get.rvm.io | bash -s stable \
     && /home/pierre/.rvm/bin/rvm install ruby-$RUBYVERSION \
     && /home/pierre/.rvm/bin/rvm use ruby-$RUBYVERSION
+
+CMD ["/usr/sbin/sshd", "-D"]
