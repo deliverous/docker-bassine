@@ -16,8 +16,7 @@ RUN \
         openssl \
         vim \
         vim-addon-manager \
-        vim-python \
-	vim-ruby \
+        vim-nox \
 	vim-scripts \
 	vim-syntax-docker \
 	vim-syntax-go 
