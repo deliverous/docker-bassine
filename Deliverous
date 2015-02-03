@@ -1,0 +1,7 @@
+bassine:
+    image: deliverous/docker-bassine-deliverous:0.1.0-0
+    ports:
+    - ip: bassine.deliverous.net
+      container_port: 22
+      host_port: 22
+    hostname: bassine
