@@ -4,10 +4,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN \
     apt-get update \
-    && apt-get dist-upgrade -y
-
-RUN \
-    apt-get install -y \
+    && apt-get dist-upgrade -y \
+    && apt-get install -y \
         build-essential \
         byobu \
         ca-certificates \
@@ -16,18 +14,24 @@ RUN \
         mercurial \
         openssh-server \
         openssl \
-        vim
+        vim \
+        vim-addon-manager \
+        vim-python \
+	vim-ruby \
+	vim-scripts \
+	vim-syntax-docker \
+	vim-syntax-go 
 
 RUN \
-    useradd user \
-    && (echo "user:user" | chpasswd) \
-    && adduser user sudo \
-    && mkdir -p /home/user \
-    && chown -R user:user /home/user
+    useradd johndeau \
+    && (echo "johndeau:johndeau" | chpasswd) \
+    && adduser johndeau sudo \
+    && mkdir -p /home/johndeau \
+    && chown -R johndeau:johndeau /home/johndeau
 
-USER user
+USER johndeau
 RUN git config --global push.default simple
-ADD vimrc /home/user/.vimrc
+ADD vimrc /home/johndeau/.vimrc
 RUN \
     mkdir -p ~/workspace ~/.vim/bundle \
     && git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
