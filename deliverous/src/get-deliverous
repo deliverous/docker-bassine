@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source ~/.rvm/scripts/rvm
+rvm use --default ruby-2.1.5
+
+git clone git@git.deliverous.com:deliverous/workspace ~/workspace
+
+cd ~/workspace
+
+bundle
+bundle exec rake git:update
