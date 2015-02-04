@@ -21,5 +21,10 @@ USER root
 ADD get-deliverous /usr/local/bin/get-deliverous
 RUN chmod 755 /usr/local/bin/get-deliverous
 
+RUN \
+    git clone https://github.com/mnagel/clustergit /usr/local/src/clustergit \
+    && ln -s /usr/local/src/clustergit/clustergit /usr/local/bin/clustergit
+
+
 VOLUME ["/home/pierre/workspace"]
 CMD ["/usr/sbin/sshd", "-D"]
