@@ -3,6 +3,7 @@
 source ~/.rvm/scripts/rvm
 rvm use --default ruby-2.1.5
 
+sudo chown -R pierre:pierre ~/workspace
 git clone git@git.deliverous.com:deliverous/workspace ~/workspace
 
 cd ~/workspace
