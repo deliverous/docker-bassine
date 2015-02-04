@@ -10,8 +10,7 @@ RUN \
 USER pierre
 
 RUN \
-    mkdir -p ~/workspace \
-    && gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
+    gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
     && \curl -sSL https://get.rvm.io | bash -s stable \
     && /bin/bash -l -c "rvm requirements" \
     && /bin/bash -l -c "rvm install ruby-$RUBYVERSION" \
@@ -22,4 +21,5 @@ USER root
 ADD get-deliverous /usr/local/bin/get-deliverous
 RUN chmod 755 /usr/local/bin/get-deliverous
 
+VOLUME ["/home/pierre/workspace"]
 CMD ["/usr/sbin/sshd", "-D"]

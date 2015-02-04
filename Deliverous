@@ -4,4 +4,7 @@ bassine:
     - ip: bassine.deliverous.net
       container_port: 22
       host_port: 22
+    volume:
+    - name: workspace
+      path: /home/pierre/workspace
     hostname: bassine
