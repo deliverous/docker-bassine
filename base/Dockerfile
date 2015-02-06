@@ -6,20 +6,22 @@ RUN \
     apt-get update \
     && apt-get dist-upgrade -y \
     && apt-get install -y \
+        vim-scripts \
+        vim-syntax-docker \
+        vim-syntax-go \
         build-essential \
         byobu \
         ca-certificates \
         curl \
         git \
+        man \
         mercurial \
         openssh-server \
         openssl \
+        time \
         vim \
         vim-addon-manager \
         vim-nox \
-	    vim-scripts \
-	    vim-syntax-docker \
-	    vim-syntax-go \
     && locale-gen en_US.UTF-8 fr_FR.UTF-8
 
 RUN \
