@@ -4,6 +4,11 @@ ENV GOVERSION 1.3.3
 ENV RUBYVERSION 2.1.5
 
 RUN \
+    apt-get update \
+    && apt-get dist-upgrade -y \
+    && apt-get install -y qt4-dev-tools qt4-qmake
+
+RUN \
     curl -sSL https://golang.org/dl/go$GOVERSION.src.tar.gz  | tar -v -C /usr/src -xz \
     && cd /usr/src/go/src && ./make.bash --no-clean
 
@@ -20,6 +25,9 @@ USER root
 
 ADD get-deliverous /usr/local/bin/get-deliverous
 RUN chmod 755 /usr/local/bin/get-deliverous
+
+ADD authorized_keys /home/pierre/.ssh/authorized_keys
+RUN chown -R pierre:pierre /home/pierre/
 
 RUN \
     git clone https://github.com/mnagel/clustergit /usr/local/src/clustergit \
