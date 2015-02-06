@@ -17,9 +17,10 @@ RUN \
         vim \
         vim-addon-manager \
         vim-nox \
-	vim-scripts \
-	vim-syntax-docker \
-	vim-syntax-go
+	    vim-scripts \
+	    vim-syntax-docker \
+	    vim-syntax-go \
+    && locale-gen en_US.UTF-8 fr_FR.UTF-8
 
 RUN \
     adduser --disabled-login --gecos "Pierre D'eau,,," pierre \
