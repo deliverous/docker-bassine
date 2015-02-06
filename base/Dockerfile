@@ -26,7 +26,6 @@ RUN \
 
 RUN \
     adduser --disabled-login --gecos "Pierre D'eau,,," pierre \
-    && (echo "pierre:deau" | chpasswd) \
     && adduser pierre sudo
 
 ADD sudoers /etc/sudoers
