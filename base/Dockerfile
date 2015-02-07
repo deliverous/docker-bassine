@@ -26,21 +26,20 @@ RUN \
 
 RUN \
     adduser --disabled-login --gecos "Pierre D'eau,,," pierre \
-    && adduser pierre sudo
+    && adduser pierre sudo \
+    && sed -ri 's/^%sudo\s+.*/%sudo  ALL=(ALL:ALL) NOPASSWD:ALL/' /etc/sudoers \
+    \
+    && mkdir /var/run/sshd \
+    && sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin no/' /etc/ssh/sshd_config \
+    && sed -ri 's/UsePAM\s+.*/UsePAM no/g' /etc/ssh/sshd_config \
+    && sed -ri 's/ChallengeResponseAuthentication\s+.*/ChallengeResponseAuthentication no/g' /etc/ssh/sshd_config \
+    && sed -ri 's/PasswordAuthentication\s+.*/PasswordAuthentication no/g' /etc/ssh/sshd_config \
+    && echo "AllowUsers pierre" >> /etc/ssh/sshd_config
 
-ADD sudoers /etc/sudoers
 ADD gitconfig /home/pierre/.gitconfig
 ADD vimrc /home/pierre/.vimrc
 ADD set-git-user /usr/local/bin/set-git-user
-RUN \
-    chmod 755 /usr/local/bin/set-git-user \
-    && chown -R pierre:pierre /home/pierre
-
-RUN \
-    mkdir /var/run/sshd \
-    && echo 'root:root' | chpasswd \
-    && sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
-    && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN chmod 755 /usr/local/bin/set-git-user
 
 EXPOSE 22
 
