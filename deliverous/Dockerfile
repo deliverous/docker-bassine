@@ -1,11 +1,10 @@
-FROM deliverous/docker-bassine:0.1.0-0
+FROM registry.deliverous.net/deliverous/docker-bassine:0.1.0-0
 
 ENV GOVERSION 1.3.3
 ENV RUBYVERSION 2.1.5
 
 RUN \
     apt-get update \
-    && apt-get dist-upgrade -y \
     && apt-get install -y qt4-dev-tools qt4-qmake
 
 RUN \
