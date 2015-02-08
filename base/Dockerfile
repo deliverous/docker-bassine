@@ -22,20 +22,16 @@ RUN \
         vim \
         vim-addon-manager \
         vim-nox \
-    && locale-gen en_US.UTF-8 fr_FR.UTF-8
+    && apt-get clean \
+    && locale-gen en_US.UTF-8 fr_FR.UTF-8 \
+    && mkdir /var/run/sshd
 
 RUN \
     adduser --disabled-login --gecos "Pierre D'eau,,," pierre \
-    && adduser pierre sudo \
-    && sed -ri 's/^%sudo\s+.*/%sudo  ALL=(ALL:ALL) NOPASSWD:ALL/' /etc/sudoers \
-    \
-    && mkdir /var/run/sshd \
-    && sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin no/' /etc/ssh/sshd_config \
-    && sed -ri 's/UsePAM\s+.*/UsePAM no/g' /etc/ssh/sshd_config \
-    && sed -ri 's/ChallengeResponseAuthentication\s+.*/ChallengeResponseAuthentication no/g' /etc/ssh/sshd_config \
-    && sed -ri 's/PasswordAuthentication\s+.*/PasswordAuthentication no/g' /etc/ssh/sshd_config \
-    && echo "AllowUsers pierre" >> /etc/ssh/sshd_config
+    && adduser pierre sudo
 
+ADD sshd_config /etc/ssh/sshd_config
+ADD sudoers /etc/ssh/sudoers
 ADD gitconfig /home/pierre/.gitconfig
 ADD vimrc /home/pierre/.vimrc
 ADD set-git-user /usr/local/bin/set-git-user
