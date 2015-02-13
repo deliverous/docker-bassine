@@ -5,7 +5,8 @@ ENV RUBYVERSION 2.1.5
 
 RUN \
     apt-get update \
-    && apt-get install -y qt4-dev-tools qt4-qmake
+    && apt-get install -y qt4-dev-tools qt4-qmake \
+    && apt-get clean \
 
 RUN \
     curl -sSL https://golang.org/dl/go$GOVERSION.src.tar.gz  | tar -v -C /usr/src -xz \
@@ -33,5 +34,5 @@ RUN \
     && ln -s /usr/local/src/clustergit/clustergit /usr/local/bin/clustergit
 
 
-VOLUME ["/home/pierre/workspace"]
+VOLUME ["/home/pierre/workspace", "/home/pierre/native"]
 CMD ["/usr/sbin/sshd", "-D"]
