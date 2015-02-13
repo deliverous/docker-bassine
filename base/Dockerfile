@@ -35,7 +35,7 @@ ADD vimrc /home/pierre/.vimrc
 ADD set-git-user /usr/local/bin/set-git-user
 
 RUN chmod 755 /usr/local/bin/set-git-user \
- && chmod 440 /etc/sudoers
+ && chmod 440 /etc/sudoers \
  && chown -R pierre:pierre /home/pierre
 
 EXPOSE 22
