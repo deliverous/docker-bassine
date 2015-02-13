@@ -37,4 +37,5 @@ RUN \
 
 
 VOLUME ["/home/pierre/workspace", "/home/pierre/native"]
+EXPOSE 22 8000
 CMD ["/usr/sbin/sshd", "-D"]
