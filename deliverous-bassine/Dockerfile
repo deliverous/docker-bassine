@@ -16,7 +16,8 @@ RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
  && \curl -sSL https://get.rvm.io | bash -s stable \
  && /bin/bash -l -c "rvm requirements" \
  && /bin/bash -l -c "rvm install ruby-$RUBYVERSION" \
- && /bin/bash -l -c "rvm use --default ruby-$RUBYVERSION"
+ && /bin/bash -l -c "rvm use --default ruby-$RUBYVERSION" \
+ && /bin/bash -l -c "rvm rvmrc warning ignore allGemfiles"
 
 USER root
 
@@ -30,6 +31,19 @@ RUN chown -R pierre:pierre /home/pierre/ \
 RUN git clone https://github.com/mnagel/clustergit /usr/local/src/clustergit \
  && ln -s /usr/local/src/clustergit/clustergit /usr/local/bin/clustergit
 
+RUN apt-get install -y \
+      libfreetype6-dev \
+      libjpeg8-dev \
+      liblcms2-dev \
+      libtiff5-dev \
+      libwebp-dev \
+      python-pip \
+      python-dev \
+      python-tk \
+      tcl8.6-dev \
+      tk8.6-dev \
+      zlib1g-dev \
+ && pip install pelican Markdown Pillow
 
 VOLUME ["/home/pierre/workspace", "/home/pierre/native"]
 EXPOSE 22 8000
