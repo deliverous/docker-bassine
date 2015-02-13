@@ -6,7 +6,7 @@ ENV RUBYVERSION 2.1.5
 RUN \
     apt-get update \
     && apt-get install -y qt4-dev-tools qt4-qmake \
-    && apt-get clean \
+    && apt-get clean
 
 RUN \
     curl -sSL https://golang.org/dl/go$GOVERSION.src.tar.gz  | tar -v -C /usr/src -xz \
@@ -27,7 +27,9 @@ ADD get-deliverous /usr/local/bin/get-deliverous
 RUN chmod 755 /usr/local/bin/get-deliverous
 
 ADD authorized_keys /home/pierre/.ssh/authorized_keys
-RUN chown -R pierre:pierre /home/pierre/
+RUN \
+    chown -R pierre:pierre /home/pierre/ \
+    chmod 600 /home/pierre/.ssh/authorized_keys
 
 RUN \
     git clone https://github.com/mnagel/clustergit /usr/local/src/clustergit \
