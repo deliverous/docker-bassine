@@ -8,7 +8,9 @@ RUN apt-get update \
  && apt-get clean
 
 RUN curl -sSL https://golang.org/dl/go$GOVERSION.src.tar.gz  | tar -v -C /usr/src -xz \
- && cd /usr/src/go/src && ./make.bash --no-clean
+ && cd /usr/src/go/src \
+ && ./make.bash --no-clean \
+ && rm -rf /usr/src/go
 
 USER pierre
 
