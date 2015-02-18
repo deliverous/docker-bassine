@@ -10,6 +10,11 @@ function set_mail {
    git config --global user.email "$1"
    echo "Email set to '$1'"
 }
+function usage {
+  echo "$0" 
+  echo "  --name NAME    set the git user name"
+  echo "  --email EMAIL  set the git user email"
+}
 
 while [[ $# -gt 0 ]] && [[ ."$1" = .--* ]] ;
 do
@@ -30,6 +35,9 @@ do
         "--email="* )
            set_mail "${opt#*=}"
            ;;
-        *) echo >&2 "Invalid option: $@"; exit 1;;
+        "--help" )
+           usage
+           ;;
+        *) echo >&2 "Invalid option: $@"; usage; exit 1;;
    esac
 done
