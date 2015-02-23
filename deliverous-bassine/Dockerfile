@@ -1,16 +1,15 @@
 FROM registry.deliverous.net/deliverous/docker-bassine:0.1.0-0
 
-ENV GOVERSION 1.3.3
+ENV GOVERSION 1.4.2
 ENV RUBYVERSION 2.1.5
 
 RUN apt-get update \
  && apt-get install -y qt4-dev-tools qt4-qmake \
  && apt-get clean
 
-RUN curl -sSL https://golang.org/dl/go$GOVERSION.src.tar.gz  | tar -v -C /usr/src -xz \
- && cd /usr/src/go/src \
- && ./make.bash --no-clean \
- && rm -rf /usr/src/go
+
+RUN curl -sSL https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz  | tar -v -C /usr/local -xz
+PATH /usr/local/go/bin:$PATH
 
 USER pierre
 
