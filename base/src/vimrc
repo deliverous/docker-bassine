@@ -11,4 +11,4 @@ set laststatus=2
 set ruler
 set backupdir=./.backup,/tmp
 set directory=./.backup,/tmp
-
+set modeline
