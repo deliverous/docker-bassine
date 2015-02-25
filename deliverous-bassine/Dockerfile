@@ -9,9 +9,10 @@ RUN apt-get update \
 
 
 RUN curl -sSL https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz  | tar -v -C /usr/local -xz
-PATH /usr/local/go/bin:$PATH
 
 USER pierre
+RUN echo "export PATH=/usr/local/go/bin:$PATH" >> /home/pierre/.bashrc \
+ && echo "[ -f ~/workspace/bin/env.sh ] && source ~/workspace/bin/env.sh" >> /home/pierre/.bashrc
 
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
  && \curl -sSL https://get.rvm.io | bash -s stable \
