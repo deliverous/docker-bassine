@@ -5,9 +5,6 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
  && apt-get dist-upgrade -y \
  && apt-get install -y \
-      vim-scripts \
-      vim-syntax-docker \
-      vim-syntax-go \
       build-essential \
       byobu \
       ca-certificates \
@@ -17,10 +14,14 @@ RUN apt-get update \
       mercurial \
       openssh-server \
       openssl \
+      software-properties-common \
       time \
       vim \
       vim-addon-manager \
       vim-nox \
+      vim-scripts \
+      vim-syntax-docker \
+      vim-syntax-go \
  && apt-get clean \
  && locale-gen en_US.UTF-8 fr_FR.UTF-8 \
  && mkdir /var/run/sshd
