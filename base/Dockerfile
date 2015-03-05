@@ -22,6 +22,7 @@ RUN apt-get update \
       vim-scripts \
       vim-syntax-docker \
       vim-syntax-go \
+      zsh \
  && apt-get clean \
  && locale-gen en_US.UTF-8 fr_FR.UTF-8 \
  && mkdir /var/run/sshd
