@@ -3,10 +3,11 @@ FROM registry.deliverous.net/deliverous/docker-bassine:0.1.0-0
 ENV GOVERSION 1.4.2
 ENV RUBYVERSION 2.1.5
 
-RUN apt-get update \
- && apt-get install -y qt4-dev-tools qt4-qmake \
- && apt-get clean
-
+RUN apt-add-repository -y ppa:brightbox/ruby-ng \
+ && apt-get update \
+ && apt-get install -y qt4-dev-tools qt4-qmake ruby2.1 \
+ && apt-get clean \
+ && gem install bundle
 
 #RUN curl -sSL https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz  | tar -v -C /usr/local -xz
 ADD https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz /usr/local/go/
@@ -15,12 +16,7 @@ USER pierre
 RUN echo "export PATH=/usr/local/go/bin:$PATH" >> /home/pierre/.bashrc \
  && echo "[ -f ~/workspace/bin/env.sh ] && source ~/workspace/bin/env.sh" >> /home/pierre/.bashrc
 
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 \
- && \curl -sSL https://get.rvm.io | bash -s stable \
- && /bin/bash -l -c "rvm requirements" \
- && /bin/bash -l -c "rvm install ruby-$RUBYVERSION" \
- && /bin/bash -l -c "rvm use --default ruby-$RUBYVERSION" \
- && /bin/bash -l -c "rvm rvmrc warning ignore allGemfiles"
+RUN vim-addon-manager install go-syntax dockerfile
 
 USER root
 
