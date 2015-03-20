@@ -16,6 +16,7 @@ RUN apt-get update \
       openssh-server \
       openssl \
       software-properties-common \
+      svn \
       time \
       vim \
       vim-addon-manager \
