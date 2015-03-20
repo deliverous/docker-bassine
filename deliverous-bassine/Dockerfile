@@ -27,7 +27,9 @@ RUN chown -R pierre:pierre /home/pierre/ \
  && chmod 600 /home/pierre/.ssh/authorized_keys
 
 RUN git clone https://github.com/mnagel/clustergit /usr/local/src/clustergit \
- && ln -s /usr/local/src/clustergit/clustergit /usr/local/bin/clustergit
+ && ln -s /usr/local/src/clustergit/clustergit /usr/local/bin/clustergit \
+ && git clone git@github.com:StreakyCobra/gws.git /usr/local/src/gws \
+ && ln -s /usr/local/src/gws/src/gws /usr/local/bin/gws
 
 RUN apt-get install -y \
       libfreetype6-dev \
