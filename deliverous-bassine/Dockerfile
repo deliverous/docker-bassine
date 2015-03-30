@@ -9,7 +9,8 @@ RUN apt-add-repository -y ppa:brightbox/ruby-ng \
  && apt-get clean \
  && gem install bundle
 
-RUN curl -sSL https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz  | tar -v -C /usr/local -xz
+#RUN curl -sSL https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz  | tar -v -C /usr/local -xz
+ADD https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz /usr/local/go/
 
 USER pierre
 RUN echo "export PATH=/usr/local/go/bin:$PATH" >> /home/pierre/.bashrc \
