@@ -9,8 +9,8 @@ RUN apt-add-repository -y ppa:brightbox/ruby-ng \
  && apt-get clean \
  && gem install bundle
 
-#RUN curl -sSL https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz  | tar -v -C /usr/local -xz
-ADD https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz /usr/local/go/
+RUN curl -sSL https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz  | tar -v -C /usr/local -xz
+#ADD https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz /usr/local/go/
 
 USER pierre
 RUN echo "export PATH=/usr/local/go/bin:$PATH" >> /home/pierre/.bashrc \
@@ -28,8 +28,8 @@ RUN chown -R pierre:pierre /home/pierre/ \
  && chmod 600 /home/pierre/.ssh/authorized_keys
 
 RUN git clone https://github.com/mnagel/clustergit /usr/local/src/clustergit \
- && ln -s /usr/local/src/clustergit/clustergit /usr/local/bin/clustergit \
- && git clone git@github.com:StreakyCobra/gws.git /usr/local/src/gws \
+ && ln -s /usr/local/src/clustergit/clustergit /usr/local/bin/clustergit 
+RUN git clone https://github.com/StreakyCobra/gws /usr/local/src/gws \
  && ln -s /usr/local/src/gws/src/gws /usr/local/bin/gws
 
 RUN apt-get install -y \
