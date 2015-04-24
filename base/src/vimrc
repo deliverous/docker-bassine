@@ -12,3 +12,7 @@ set ruler
 set backupdir=./.backup,/tmp
 set directory=./.backup,/tmp
 set modeline
+
+" Show tab and trailing space
+set list listchars=tab:→\ ,trail:·
+set list

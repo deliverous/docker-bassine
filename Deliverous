@@ -11,3 +11,5 @@ bassine:
     - name: workspace
       path: /home/pierre/workspace
     hostname: bassine
+    limits:
+      memory: 4G
