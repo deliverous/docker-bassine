@@ -16,3 +16,7 @@ set modeline
 " Show tab and trailing space
 set list listchars=tab:→\ ,trail:·
 set list
+
+" auto indent html
+let g:html_indent_inctags = "html,head,body,div,a,nav,ul,ol,dl,li,table,thead,tbody,tr,th,td,blockquote,select,form,option,optgroup,fieldset,legend,label,header,section,aside,footer,figure,video,span,p,g,svg"
+filetype plugin indent on
