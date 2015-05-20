@@ -23,5 +23,10 @@ java:
     volumes:
     - name: java
       path: /home/pierre/workspace
+    - name: workspace
+      path: /home/pierre/deliverous
     limits:
       memory: 4G
+    links:
+    - name: bassine
+      alias: bassine
