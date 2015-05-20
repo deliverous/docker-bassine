@@ -1,0 +1,35 @@
+[core]
+  excludesfile = /home/pierre/.gitignore_global
+  autocrlf = false
+  safecrlf = true
+
+[log]
+  decorate = true
+
+[push]
+  default = simple
+
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  br = branch
+  lol = log --graph --pretty=oneline --abbrev-commit
+  lolal = log --graph  --pretty=oneline --abbrev-commit --all
+  lola = log --graph  --pretty=format:'%d %Cgreen%h%Creset (%ar - %Cred%an%Creset), %s' --abbrev-commit --all
+
+[color]
+  ui = auto
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+
+[apply]
+	whitespace = nowarn
+[pull]
+	rebase = true
+[merge]
+	conflictstyle = diff3
+[diff]
+	renames = copies

@@ -13,3 +13,15 @@ bassine:
     hostname: bassine
     limits:
       memory: 4G
+
+java:
+    image: registry.deliverous.net/deliverous/java-bassine
+    ports:
+    - ip: bassine.deliverous.net
+      container_port: 5900
+      host_port: 5900
+    volumes:
+    - name: java
+      path: /home/pierre/workspace
+    limits:
+      memory: 4G
