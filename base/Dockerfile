@@ -1,9 +1,15 @@
-FROM ubuntu:trusty
+FROM ubuntu
 
 ENV DEBIAN_FRONTEND noninteractive
 
+
 RUN apt-get update \
  && apt-get dist-upgrade -y \
+ && apt-get clean
+
+RUN locale-gen en_US.UTF-8 fr_FR.UTF-8
+
+RUN apt-get update \
  && apt-get install -y \
       build-essential \
       byobu \
@@ -16,7 +22,7 @@ RUN apt-get update \
       openssh-server \
       openssl \
       software-properties-common \
-      svn \
+      subversion \
       time \
       vim \
       vim-addon-manager \
@@ -26,7 +32,6 @@ RUN apt-get update \
       vim-syntax-go \
       zsh \
  && apt-get clean \
- && locale-gen en_US.UTF-8 fr_FR.UTF-8 \
  && mkdir /var/run/sshd
 
 RUN adduser --disabled-login --gecos "Pierre D'eau,,," pierre \
