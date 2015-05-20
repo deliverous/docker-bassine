@@ -28,5 +28,6 @@ run mkdir ~/.vnc && x11vnc -storepasswd ooJ8ooH1mi ~/.vnc/passwd
 env FD_PROG /usr/bin/ratpoison 
 env X11VNC_FINDDISPLAY_ALWAYS_FAILS 1
 env X11VNC_CREATE_GEOM 1280x768x16
+run echo "exec /usr/bin/eclipse" > ~/.ratpoisonrc
 expose 5900
 cmd x11vnc -forever -usepw -create -shared
