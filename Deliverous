@@ -10,6 +10,8 @@ bassine:
     volumes:
     - name: workspace
       path: /home/pierre/workspace
+    - name: java
+      path: /home/pierre/java
     hostname: bassine
     limits:
       memory: 4G
