@@ -22,6 +22,8 @@ run chmod 755 /usr/local/bin/set-git-user && \
 run apt-get update && \
     apt-get install -y ratpoison xterm &&\
     apt-get clean
+
+#add http://download.jetbrains.com/idea/ideaIC-14.1.3.tar.gz 
 user pierre
 workdir /home/pierre
 run mkdir ~/.vnc && x11vnc -storepasswd ooJ8ooH1mi ~/.vnc/passwd

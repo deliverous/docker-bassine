@@ -32,3 +32,5 @@ java:
     links:
     - name: bassine
       alias: bassine
+    deploy_with:
+    - bassine

@@ -44,7 +44,7 @@ RUN apt-get install -y \
       tcl8.6-dev \
       tk8.6-dev \
       zlib1g-dev \
- && pip install pelican Markdown Pillow
+ && pip install pelican Markdown Pillow 
 
 VOLUME ["/home/pierre/workspace", "/home/pierre/native"]
 EXPOSE 22 8000
