@@ -6,4 +6,4 @@ This container is the common layer to builds reals "Bassine"
 
 To use it, just add this line in your Dockerfile
 
-    from deliverous/docker-bassine
+    from deliverous/common-bassine

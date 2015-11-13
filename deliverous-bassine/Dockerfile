@@ -1,4 +1,4 @@
-FROM deliverous/docker-bassine
+FROM deliverous/common-bassine
 
 # pour marketing : rails + test avec webrick
 RUN apt-get update \
