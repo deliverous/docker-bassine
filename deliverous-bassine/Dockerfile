@@ -1,4 +1,4 @@
-FROM registry.deliverous.net/deliverous/docker-bassine:0.1.0-0
+FROM deliverous/docker-bassine
 
 ENV GOVERSION 1.4.2
 ENV RUBYVERSION 2.1.5
