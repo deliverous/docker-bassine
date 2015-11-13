@@ -1,5 +1,5 @@
 bassine:
-    image: registry.deliverous.net/deliverous/docker-bassine-deliverous:0.1.0-0
+    image: deliverous/ssh-bassine
     ports:
     - ip: bassine.deliverous.net
       container_port: 22
@@ -7,6 +7,9 @@ bassine:
     - ip: bassine.deliverous.net
       container_port: 8000
       host_port: 8000
+    - ip: bassine.deliverous.net
+      container_port: 4000
+      host_port: 4000
     volumes:
     - name: workspace
       path: /home/pierre/workspace
