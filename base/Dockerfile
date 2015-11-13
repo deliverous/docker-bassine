@@ -7,7 +7,7 @@ RUN apt-get update \
  && apt-get clean
 
 RUN apt-get update \
- && apt-get install -y locales \
+ && apt-get install -y locales sudo \
  && apt-get clean
 ADD locale.gen /etc/locale.gen
 RUN /usr/sbin/locale-gen 
