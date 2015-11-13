@@ -1,20 +1,34 @@
 FROM deliverous/docker-bassine
 
+# pour marketing : rails + test avec webrick
 RUN apt-get update \
  && apt-get install -y \
       qt4-dev-tools \
       qt4-qmake \
       ruby \
-      golang \
-      vim-gocomplete \
-      gocode-auto-complete-el \
-      jekyll \
  && apt-get clean \
  && gem install bundle
 
+# Pour l'api en go 
+RUN apt-get update \
+ && apt-get install -y \
+      golang \
+      vim-gocomplete \
+      gocode-auto-complete-el \
+ && apt-get clean 
+
+# Pour le site azae       
+RUN apt-get update \
+ && apt-get install -y jekyll \
+ && apt-get clean 
+
+# Pour le blog deliverous
+RUN apt-get update \
+ && apt-get install -y pelican \
+ && apt-get clean
+
 USER pierre
 RUN echo "[ -f ~/workspace/bin/env.sh ] && source ~/workspace/bin/env.sh" >> /home/pierre/.bashrc
-
 RUN vim-addon-manager install go-syntax dockerfile
 
 USER root
@@ -31,19 +45,6 @@ RUN git clone https://github.com/mnagel/clustergit /usr/local/src/clustergit \
 RUN git clone https://github.com/StreakyCobra/gws /usr/local/src/gws \
  && ln -s /usr/local/src/gws/src/gws /usr/local/bin/gws
 
-RUN apt-get install -y \
-      libfreetype6-dev \
-      libjpeg8-dev \
-      liblcms2-dev \
-      libtiff5-dev \
-      libwebp-dev \
-      python-pip \
-      python-dev \
-      python-tk \
-      tcl8.6-dev \
-      tk8.6-dev \
-      zlib1g-dev \
- && pip install pelican Markdown Pillow 
 
 VOLUME ["/home/pierre/workspace", "/home/pierre/native"]
 EXPOSE 22 8000
