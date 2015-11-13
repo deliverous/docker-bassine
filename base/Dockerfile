@@ -5,10 +5,10 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
  && apt-get dist-upgrade -y \
  && apt-get clean
-RUN apt-get update \
-    && apt-get install -y locales \
-    && apt-get clean
 
+RUN apt-get update \
+ && apt-get install -y locales \
+ && apt-get clean
 ADD locale.gen /etc/locale.gen
 RUN /usr/sbin/locale-gen 
 
