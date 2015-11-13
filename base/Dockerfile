@@ -1,13 +1,16 @@
-FROM ubuntu
+FROM debian:sid
 
 ENV DEBIAN_FRONTEND noninteractive
-
 
 RUN apt-get update \
  && apt-get dist-upgrade -y \
  && apt-get clean
+RUN apt-get update \
+    && apt-get install -y locales \
+    && apt-get clean
 
-RUN locale-gen en_US.UTF-8 fr_FR.UTF-8
+ADD locale.gen /etc/locale.gen
+RUN /usr/sbin/locale-gen 
 
 RUN apt-get update \
  && apt-get install -y \
@@ -29,7 +32,6 @@ RUN apt-get update \
       vim-nox \
       vim-scripts \
       vim-syntax-docker \
-      vim-syntax-go \
       zsh \
  && apt-get clean \
  && mkdir /var/run/sshd
