@@ -1,4 +1,4 @@
-from deliverous/jessie
+from deliverous/common-bassine
 run apt-get update && \
     apt-get install -y x11vnc xvfb &&\
     apt-get clean
