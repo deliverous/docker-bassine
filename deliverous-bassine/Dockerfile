@@ -1,20 +1,19 @@
 FROM deliverous/docker-bassine
 
-ENV GOVERSION 1.4.2
-ENV RUBYVERSION 2.1.5
-
-RUN apt-add-repository -y ppa:brightbox/ruby-ng \
- && apt-get update \
- && apt-get install -y qt4-dev-tools qt4-qmake ruby2.1 \
+RUN apt-get update \
+ && apt-get install -y \
+      qt4-dev-tools \
+      qt4-qmake \
+      ruby \
+      golang \
+      vim-gocomplete \
+      gocode-auto-complete-el \
+      jekyll \
  && apt-get clean \
  && gem install bundle
 
-RUN curl -sSL https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz  | tar -v -C /usr/local -xz
-#ADD https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz /usr/local/go/
-
 USER pierre
-RUN echo "export PATH=/usr/local/go/bin:$PATH" >> /home/pierre/.bashrc \
- && echo "[ -f ~/workspace/bin/env.sh ] && source ~/workspace/bin/env.sh" >> /home/pierre/.bashrc
+RUN echo "[ -f ~/workspace/bin/env.sh ] && source ~/workspace/bin/env.sh" >> /home/pierre/.bashrc
 
 RUN vim-addon-manager install go-syntax dockerfile
 
