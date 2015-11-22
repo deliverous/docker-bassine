@@ -1,5 +1,5 @@
 bassine:
-    image: deliverous/ssh-bassine
+    image: deliverous/shell-bassine
     ports:
     - ip: bassine.deliverous.net
       container_port: 22
