@@ -14,10 +14,10 @@ run apt-get update && \
 #add https://download.jetbrains.com/idea/ideaIC-15.0.1.tar.gz /usr/local/share/
 user pierre
 workdir /home/pierre
-run mkdir ~/.vnc && x11vnc -storepasswd ooJ8ooH1mi ~/.vnc/passwd
+run mkdir ~/.vnc 
 env FD_PROG /usr/bin/ratpoison 
 env X11VNC_FINDDISPLAY_ALWAYS_FAILS 1
 env X11VNC_CREATE_GEOM 1280x768x16
 run echo "exec /usr/bin/eclipse" > ~/.ratpoisonrc
 expose 5900
-cmd x11vnc -forever -usepw -create -shared
+cmd x11vnc -storepasswd $VNC_PWD ~/.vnc/passwd; x11vnc -forever -usepw -create -shared

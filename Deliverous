@@ -20,7 +20,7 @@ bassine:
       memory: 4G
 
 java:
-    image: registry.deliverous.net/deliverous/java-bassine
+    image: deliverous/java-bassine
     ports:
     - ip: bassine.deliverous.net
       container_port: 5900
@@ -37,3 +37,5 @@ java:
       alias: bassine
     deploy_with:
     - bassine
+    environment:
+      VNC_PWD: {{ .vnc_pwd }}
