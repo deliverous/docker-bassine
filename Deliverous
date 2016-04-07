@@ -40,11 +40,3 @@ java:
   environment:
     VNC_PWD: {{ .vnc_pwd }}
 
-ansible:
-  image: auchandirect/spark-infra
-  ports:
-  - ip: bassine.deliverous.net
-    container_port: 2222
-    host_port: 2222
-  limits:
-    memory: 4G
