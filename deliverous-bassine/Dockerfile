@@ -9,18 +9,18 @@ RUN apt-get update \
  && apt-get clean \
  && gem install bundle
 
-# Pour l'api en go 
+# Pour l'api en go
 RUN apt-get update \
  && apt-get install -y \
       golang \
       vim-gocomplete \
       gocode-auto-complete-el \
- && apt-get clean 
+ && apt-get clean
 
-# Pour le site azae       
+# Pour le site azae
 RUN apt-get update \
  && apt-get install -y jekyll \
- && apt-get clean 
+ && apt-get clean
 
 # Pour le blog deliverous
 RUN apt-get update \
@@ -41,10 +41,17 @@ RUN chown -R pierre:pierre /home/pierre/ \
  && chmod 600 /home/pierre/.ssh/authorized_keys
 
 RUN git clone https://github.com/mnagel/clustergit /usr/local/src/clustergit \
- && ln -s /usr/local/src/clustergit/clustergit /usr/local/bin/clustergit 
+ && ln -s /usr/local/src/clustergit/clustergit /usr/local/bin/clustergit
 RUN git clone https://github.com/StreakyCobra/gws /usr/local/src/gws \
  && ln -s /usr/local/src/gws/src/gws /usr/local/bin/gws
 
+# Pour ansible
+RUN apt-get update \
+ && apt-get install -y \
+      python-pip \
+      python-dev \
+ && apt-get clean \
+ && pip install ansible
 
 VOLUME ["/home/pierre/workspace", "/home/pierre/native"]
 EXPOSE 22 8000
