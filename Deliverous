@@ -1,41 +1,50 @@
 bassine:
-    image: deliverous/shell-bassine
-    ports:
-    - ip: bassine.deliverous.net
-      container_port: 22
-      host_port: 22
-    - ip: bassine.deliverous.net
-      container_port: 8000
-      host_port: 8000
-    - ip: bassine.deliverous.net
-      container_port: 4000
-      host_port: 4000
-    volumes:
-    - name: workspace
-      path: /home/pierre/workspace
-    - name: java
-      path: /home/pierre/java
-    hostname: bassine
-    limits:
-      memory: 4G
+  image: deliverous/shell-bassine
+  ports:
+  - ip: bassine.deliverous.net
+    container_port: 22
+    host_port: 22
+  - ip: bassine.deliverous.net
+    container_port: 8000
+    host_port: 8000
+  - ip: bassine.deliverous.net
+    container_port: 4000
+    host_port: 4000
+  volumes:
+  - name: workspace
+    path: /home/pierre/workspace
+  - name: java
+    path: /home/pierre/java
+  hostname: bassine
+  limits:
+    memory: 4G
 
 java:
-    image: deliverous/java-bassine
-    ports:
-    - ip: bassine.deliverous.net
-      container_port: 5900
-      host_port: 5900
-    volumes:
-    - name: java
-      path: /home/pierre/workspace
-    - name: workspace
-      path: /home/pierre/deliverous
-    limits:
-      memory: 4G
-    links:
-    - name: bassine
-      alias: bassine
-    deploy_with:
-    - bassine
-    environment:
-      VNC_PWD: {{ .vnc_pwd }}
+  image: deliverous/java-bassine
+  ports:
+  - ip: bassine.deliverous.net
+    container_port: 5900
+    host_port: 5900
+  volumes:
+  - name: java
+    path: /home/pierre/workspace
+  - name: workspace
+    path: /home/pierre/deliverous
+  limits:
+    memory: 4G
+  links:
+  - name: bassine
+    alias: bassine
+  deploy_with:
+  - bassine
+  environment:
+    VNC_PWD: {{ .vnc_pwd }}
+
+ansible:
+  image: auchandirect/spark-infra
+  ports:
+  - ip: bassine.deliverous.net
+    container_port: 2222
+    host_port: 2222
+  limits:
+    memory: 4G
