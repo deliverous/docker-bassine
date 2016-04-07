@@ -48,8 +48,9 @@ RUN git clone https://github.com/StreakyCobra/gws /usr/local/src/gws \
 # Pour ansible
 RUN apt-get update \
  && apt-get install -y \
-      python-pip \
       python-dev \
+      python-pip \
+      python-setuptools \
  && apt-get clean \
  && pip install ansible
 
