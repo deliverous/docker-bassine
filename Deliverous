@@ -32,9 +32,6 @@ java:
     path: /home/pierre/deliverous
   limits:
     memory: 4G
-  links:
-  - name: bassine
-    alias: bassine
   deploy_with:
   - bassine
   environment:
